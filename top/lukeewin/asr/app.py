@@ -183,7 +183,7 @@ async def asr(file: UploadFile = File(None),
             with open(tmp_audio, "wb") as f:
                 f.write(contents)
                 f.flush()
-            audio = os.path.join(save_path, task_id + "_converted" + file_extension)
+            audio = os.path.join(save_path, task_id + "_converted.wav")
             convert_audio_to_wav(input_path=tmp_audio, output_path=audio)
             if os.path.exists(audio) and os.path.isfile(audio):
                 model = get_model()
@@ -211,7 +211,7 @@ async def asr(file: UploadFile = File(None),
                     f.write(response.content)
                     f.flush()
                 if os.path.isfile(tmp_audio):
-                    audio = os.path.join(save_path, task_id + "_converted" + file_extension)
+                    audio = os.path.join(save_path, task_id + "_converted.wav")
                     convert_audio_to_wav(input_path=tmp_audio, output_path=audio)
                     model = get_model()
                     res = model.generate(
@@ -294,7 +294,7 @@ def task_worker():
                 with open(tmp_audio, "wb") as f:
                     f.write(audio_content)
                     f.flush()
-                audio = os.path.join(save_path, task_id + "_converted" + file_extension)
+                audio = os.path.join(save_path, task_id + "_converted.wav")
                 convert_audio_to_wav(input_path=tmp_audio, output_path=audio)
                 if os.path.exists(audio) and os.path.isfile(audio):
                     model = get_model()
@@ -326,7 +326,7 @@ def task_worker():
                         f.write(response.content)
                         f.flush()
                     if os.path.isfile(tmp_audio):
-                        audio = os.path.join(save_path, task_id + "_converted" + file_extension)
+                        audio = os.path.join(save_path, task_id + "_converted.wav")
                         convert_audio_to_wav(input_path=tmp_audio, output_path=audio)
                         model = get_model()
                         res = model.generate(
