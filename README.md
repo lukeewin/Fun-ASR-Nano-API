@@ -2,7 +2,7 @@
 
 # 1. API介绍
 
-该项目使用阿里开源的`Fun-ASR-Nano-2512`模型。具体多种国内内外语言识别，更具体内容可以点击[这里](https://modelscope.cn/models/FunAudioLLM/Fun-ASR-Nano-2512)。
+该项目使用阿里开源的`Fun-ASR-Nano-2512`模型。支持多种国内外语音识别，更具体内容可以点击[这里](https://modelscope.cn/models/FunAudioLLM/Fun-ASR-Nano-2512)。
 
 一共有三个接口，一个同步接口，一个异步接口，一个获取异步转写结果接口。
 
