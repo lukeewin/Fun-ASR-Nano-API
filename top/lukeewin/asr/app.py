@@ -160,7 +160,7 @@ def convert_audio_to_wav(input_path, output_path):
 
 @app.post("/asr")
 async def asr(file: UploadFile = File(None),
-                     audioURL: str = Form(None),
+                     audio_url: str = Form(None),
                      hotwords: str = Form(None),
                      language: str = Form("中文"),
                      batch_size: int = Form(1),
@@ -197,13 +197,13 @@ async def asr(file: UploadFile = File(None),
                 )
                 text = res[0]["text"]
                 return response_format(code=200, status='success', message='请求成功', data=text)
-        elif audioURL:
+        elif audio_url:
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
             }
-            response = requests.get(audioURL, headers=headers, stream=True, timeout=30)
+            response = requests.get(audio_url, headers=headers, stream=True, timeout=30)
             if response.status_code == 200:
-                url_path = urlparse(audioURL).path
+                url_path = urlparse(audio_url).path
                 filename = os.path.basename(url_path)
                 file_extension = os.path.splitext(filename)[1].lower()
                 tmp_audio = os.path.join(save_path, task_id + file_extension)
@@ -253,7 +253,7 @@ async def asr_async(file: UploadFile = File(None),
     filename = None
     file_extension = None
     if file and audio_url:
-        return response_format(code=300, status='success', message='不能同时传入file和audioURL', data={'task_id': task_id})
+        return response_format(code=300, status='success', message='不能同时传入file和audio_url', data={'task_id': task_id})
     elif file:
         filename = file.filename
         file_extension = os.path.splitext(filename)[1].lower()
