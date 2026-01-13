@@ -385,6 +385,9 @@ async def result(task_id: str):
 async def startup_event():
     """应用启动时预加载模型"""
     get_model()
+    save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "upload")
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
     t = threading.Thread(target=task_worker, daemon=True)
     t.start()
 
