@@ -231,9 +231,9 @@ async def asr(file: UploadFile = File(None),
     except Exception as e:
         logger.error(f'{task_id} 转写异常')
     finally:
-        if os.path.exists(tmp_audio):
+        if file and os.path.exists(tmp_audio):
             os.unlink(tmp_audio)
-        if os.path.exists(audio):
+        if audio_url and os.path.exists(audio):
             os.unlink(audio)
 
 
