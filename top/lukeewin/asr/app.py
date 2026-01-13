@@ -228,6 +228,7 @@ async def asr(file: UploadFile = File(None),
                 logger.error(f'{task_id} 音频下载失败')
         else:
             logger.error(f'{task_id} 传入参数不正确')
+            return response_format(code=300, status='success', message='传入参数不正确', data={'task_id': task_id})
     except Exception as e:
         logger.error(f'{task_id} 转写异常')
     finally:
