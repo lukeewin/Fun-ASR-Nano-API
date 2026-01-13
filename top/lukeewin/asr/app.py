@@ -231,6 +231,7 @@ async def asr(file: UploadFile = File(None),
             return response_format(code=300, status='success', message='传入参数不正确', data={'task_id': task_id})
     except Exception as e:
         logger.error(f'{task_id} 转写异常')
+        return response_format(code=300, status='success', message='转写异常', data={'task_id': task_id})
     finally:
         if file and os.path.exists(tmp_audio):
             os.unlink(tmp_audio)
